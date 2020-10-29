@@ -1,0 +1,4 @@
+[01-Oct-2020 00:51:41 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in /home/wowdelivery/public_html/app/Http/Controllers/ProductController.php on line 27
+[01-Oct-2020 00:51:44 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in /home/wowdelivery/public_html/app/Http/Controllers/ProductController.php on line 27
+[01-Oct-2020 00:51:49 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in /home/wowdelivery/public_html/app/Http/Controllers/ProductController.php on line 27
+[01-Oct-2020 00:51:53 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Controller' not found in /home/wowdelivery/public_html/app/Http/Controllers/ProductController.php on line 27
