@@ -54,9 +54,12 @@ class UserAPIController extends Controller
                 if (!$user->hasRole('driver')) {
                     $this->sendError('User not driver', 401);
                 }
+                else
+                {
                 $user->device_token = $request->input('device_token', '');
                 $user->save();
                 return $this->sendResponse($user, 'User retrieved successfully');
+                }
             }
         } catch (\Exception $e) {
             return $this->sendError($e->getMessage(), 401);

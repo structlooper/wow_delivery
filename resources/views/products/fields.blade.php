@@ -40,23 +40,23 @@
         <div class="col-9">
             <select class="form-control" name="enable_time" id="dis_time" disabled>
                 @if(isset($product) and $product->enable_time != '')
-                    <?php if($product->enable_time < Carbon\Carbon::now()->addHours(4))  { ?>
-                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}" selected>{{ $product->enable_time }} 4 hr</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(8) }}"  >8 hr</option>
+                    <?php if($product->enable_time < Carbon\Carbon::now()->addHours(2))  { ?>
+                    <option value="{{ Carbon\Carbon::now()->addHours(2) }}" selected>{{ $product->enable_time }} 2 hr</option>
+                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}"  >4 hr</option>
                     <option value="{{ Carbon\Carbon::now()->addHours(24) }}" >1 day</option>
-                    <?php } elseif($product->enable_time > Carbon\Carbon::now()->addHours(4) and $product->enable_time < Carbon\Carbon::now()->addHours(8)) { ?>
-                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}">4 hr</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(8) }}" selected>8 hr</option>
+                    <?php } elseif($product->enable_time > Carbon\Carbon::now()->addHours(2) and $product->enable_time < Carbon\Carbon::now()->addHours(4)) { ?>
+                    <option value="{{ Carbon\Carbon::now()->addHours(2) }}">2 hr</option>
+                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}" selected>4 hr</option>
                     <option value="{{ Carbon\Carbon::now()->addHours(24) }}" >1 day</option>
                     <?php } else { ?>
+                    <option value="{{ Carbon\Carbon::now()->addHours(2) }}">2 hr</option>
                     <option value="{{ Carbon\Carbon::now()->addHours(4) }}">4 hr</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(8) }}">8 hr</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(24) }}" selected >1 day</option>
+                    <option value="{{ Carbon\Carbon::now()->addHours(24) }}" selected>1 day</option>
                     <?php } ?>
                 @else
                     <option >--Select time--</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}">4 hr</option>
-                    <option value="{{ Carbon\Carbon::now()->addHours(8) }}" >8 hr</option>
+                    <option value="{{ Carbon\Carbon::now()->addHours(2) }}">2 hr</option>
+                    <option value="{{ Carbon\Carbon::now()->addHours(4) }}" >4 hr</option>
                     <option value="{{ Carbon\Carbon::now()->addHours(24) }}" >1 day</option>
                 @endif
             </select>

@@ -20,6 +20,57 @@
   </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
+<div class="content">
+  <div class="clearfix"></div>
+{{--  @include('flash::message')--}}
+  <div class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs align-items-end card-header-tabs w-100">
+        <li class="nav-item">
+          <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-list mr-2"></i>Market Requests</a>
+        </li>
+
+{{--        @include('layouts.right_toolbar', compact('dataTable'))--}}
+
+      </ul>
+    </div>
+    <div class="card-body">
+{{--      @include('markets_payouts.table')--}}
+
+@php $earning_request = App\Helpers\productHelper::getEarningRequest(); @endphp
+      <table class="table" >
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Market id</th>
+          <th scope="col">Market</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Request day</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if(sizeof($earning_request)>0)
+            @foreach($earning_request as $key => $earning)
+        <tr>
+          <th scope="row">{{ $key+1 }}</th>
+          <td>{{ $earning->market_id }}</td>
+          <td>{{ $earning->market_name }}</td>
+          <td>{{ $earning->amount }}</td>
+          <td>{{ date('d,M h:ia',strtotime($earning->created_at)) }}</td>
+        </tr>
+        @endforeach
+        @else
+         <tr>
+          <th scope="row"></th>
+          <th>No requests found</th>
+          </tr>
+      @endif
+        </tbody>
+      </table>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
 <div class="content">
   <div class="clearfix"></div>

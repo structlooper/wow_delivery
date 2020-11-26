@@ -1,2 +1,0 @@
-[14-Oct-2020 10:19:15 UTC] PHP Fatal error:  Class 'Illuminate\Database\Seeder' not found in /home/wowdelivery/public_html/database/seeds/CartOptionsTableSeeder.php on line 5
-[14-Oct-2020 10:19:19 UTC] PHP Fatal error:  Class 'Illuminate\Database\Seeder' not found in /home/wowdelivery/public_html/database/seeds/DatabaseSeeder.php on line 12

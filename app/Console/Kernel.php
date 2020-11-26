@@ -38,17 +38,12 @@ class Kernel extends ConsoleKernel
 
                 if(in_array(strval(date('D')),$days)){
                     //open day
-                    if($market->open_time > date('H:m') ){
+                     if($market->open_time < date('H:m') and date('H:m') < $market->close_time){
                         echo 'in open time ';
                         DB::table('markets')
                             ->where('id',$market->id)
                             ->update(['closed' => '0','updated_at' => Carbon::now()]);
-                    }elseif(date('H:m') < $market->close_time){
-                        DB::table('markets')
-                            ->where('id',$market->id)
-                            ->update(['closed' => '0','updated_at' => Carbon::now()]);
-                    }
-                    else{
+                    }else{
 
                         DB::table('markets')
                             ->where('id',$market->id)

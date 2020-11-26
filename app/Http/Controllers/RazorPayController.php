@@ -55,13 +55,14 @@ class RazorPayController extends ParentOrderController
             $user = $this->userRepository->findByField('api_token', $request->get('api_token'))->first();
             $coupon = $this->couponRepository->findByField('code', $request->get('coupon_code'))->first();
             $deliveryId = $request->get('delivery_address_id');
+              $tip_amount=$request->get('tip_amount');
             $deliveryAddress = $this->deliveryAddressRepo->findWithoutFail($deliveryId);
             if (!empty($user)) {
                 $this->order->user = $user;
                 $this->order->user_id = $user->id;
                 $this->order->delivery_address_id = $deliveryId;
                 $this->coupon = $coupon;
-                $razorPayCart = $this->getOrderData();
+                $razorPayCart = $this->getOrderData($tip_amount);
 
                 $razorPayOrder = $this->api->order->create($razorPayCart);
                 $fields = $this->getRazorPayFields($razorPayOrder, $user, $deliveryAddress);
@@ -96,7 +97,7 @@ class RazorPayController extends ParentOrderController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function paySuccess(int $userId, int $deliveryAddressId,string $couponCode, Request $request)
+    public function paySuccess(int $userId, int $deliveryAddressId,string $couponCode = null, Request $request)
     {
         $data = $request->all();
 
@@ -131,10 +132,10 @@ class RazorPayController extends ParentOrderController
      *
      * @return array
      */
-    private function getOrderData()
+    private function getOrderData($tip_amount)
     {
         $data = [];
-        $this->calculateTotal();
+        $this->calculateTotal($tip_amount);
         $amountINR = $this->total;
         if ($this->currency !== 'INR') {
             $url = "https://api.exchangeratesapi.io/latest?symbols=$this->currency&base=INR";

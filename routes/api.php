@@ -122,4 +122,5 @@ Route::post('check_coupons','API\CouponAPIController@check_coupons');
 
 });
 Route::post('update_product','API\ProductAPIController@update_product');
+Route::post('earning_request','API\ProductAPIController@earning_request');
 

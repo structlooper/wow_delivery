@@ -111,7 +111,7 @@ abstract class ParentOrderController extends Controller
     /**
      * @return float
      */
-    protected function calculateTotal(): float
+    protected function calculateTotal($tip_amount): float
     {
         $carts = $this->order->user->cart;
         foreach ($carts as $_cart) {
@@ -123,11 +123,11 @@ abstract class ParentOrderController extends Controller
         }
         $this->subtotal = $this->total;
 
-        $this->calculateDeliveryFee();
+        $this->calculateDeliveryFee($tip_amount);
         $this->calculateTaxFee();
-
+         $this->total += $tip_amount;
         $this->total = round($this->total, 2);
-
+   
         return $this->total;
     }
 
@@ -140,6 +140,7 @@ abstract class ParentOrderController extends Controller
             $carts = $this->order->user->cart;
             $this->order->delivery_fee = $carts[0]->product->market->delivery_fee;
             $this->total += $this->order->delivery_fee;
+            
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
         }

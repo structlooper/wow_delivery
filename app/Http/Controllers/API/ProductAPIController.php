@@ -261,4 +261,38 @@ class ProductAPIController extends Controller
         }
     }
 
+    public function earning_request(Request $request){
+        $market_id = $request->market_id;
+        $market_name = $request->market_name;
+        $amount = $request->amount;
+        if($market_id == '' or $market_name == '' or $amount == '' ){
+            return [
+                'status' => false,
+                'msg' => 'Please enter all details correctly',
+                'data' => []
+                ];
+        }
+        else{
+            $insert_request = DB::table('earning_request')
+            ->insert([
+                'market_id' => $market_id,
+                'market_name' => $market_name,
+                'amount' => $amount,
+                'created_at' => Carbon::now(),
+                ]);
+                if($insert_request){
+                    return [
+                        'status' => true,
+                        'msg' => 'earning request sended successfully',
+                        'data' => []
+                        ];
+                }else{
+                     return [
+                        'status' => false,
+                        'msg' => 'some internal issue',
+                        'data' => []
+                        ];
+                }
+        }
+    }
 }
